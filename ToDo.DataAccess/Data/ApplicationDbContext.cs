@@ -13,6 +13,8 @@ namespace ToDo.DataAccess.Data
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ToDoTask> ToDoTasks { get; set; }
+        public DbSet<ToDoGroup> ToDoGroups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
