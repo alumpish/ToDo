@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ToDo.Models;
 
-namespace BulkyBook.DataAcess.Data
+namespace ToDo.DataAccess.Data
 {
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
@@ -11,6 +12,7 @@ namespace BulkyBook.DataAcess.Data
 
         }
 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
