@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace ToDo.Models
 {
@@ -16,6 +17,7 @@ namespace ToDo.Models
 
         public string UserId { get; set; }
         [ForeignKey("UserId")]
+        [ValidateNever]
         public ApplicationUser User { get; set; }
     }
 }

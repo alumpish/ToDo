@@ -1,0 +1,103 @@
+﻿@model IEnumerable<ToDoTask>
+
+<div class="row pb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <a asp-area="User" asp-controller="Tasks" asp-action="Index"
+                   class="btn btn-primary bg-gradient border-0 form-control">
+                    Back to Tasks
+                </a>
+            </div>
+        </div>
+    </div>
+
+    @foreach (var task in Model)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow  border-top border-5 rounded">
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">
+                                    @if (task.IsCompleted)
+                                    {
+                                        <del>@task.Description</del>
+                                    }
+                                    else
+                                    {
+                                        @task.Description
+                                    }
+                                </p>
+                                <p class="card-title text-warning text-center">Date: <b>@task.Date</b></p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-opacity-75 text-center">
+                                 @*    As low as:
+                                    <span>
+                                        120
+                                    </span> *@
+                                </p>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <div class="col">
+                                @if (task.IsCompleted)
+                                {
+                                    <a asp-action="MarkAsNotCompleted"
+                                       asp-route-id="@task.Id"
+                                       class="btn btn-success bg-gradient border-0 form-control">
+                                        <i class="bi bi-x-circle-fill"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-action="MarkAsCompleted"
+                                       asp-route-id="@task.Id"
+                                       class="btn btn-success bg-gradient border-0 form-control">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                    </a>
+                                }
+                            </div>
+                            <div class="col">
+                                @if (task.IsImportant)
+                                {
+                                    <a asp-action="MarkAsNotImportant"
+                                       asp-route-id="@task.Id"
+                                       class="btn btn-info bg-gradient border-0 form-control">
+                                        <i class="bi bi-flag"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-action="MarkAsImportant"
+                                       asp-route-id="@task.Id"
+                                       class="btn btn-info bg-gradient border-0 form-control">
+                                        <i class="bi bi-flag-fill"></i>
+                                    </a>
+                                }
+                            </div>
+                            <div class="col">
+                                <a asp-action="UnArchive"
+                                   asp-route-id="@task.Id"
+                                   class="btn btn-secondary bg-gradient border-0 form-control">
+                                    <i class="bi bi-archive"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <a asp-action="Delete"
+                                   asp-route-id="@task.Id"
+                                   class="btn btn-danger bg-gradient border-0 form-control">
+                                    Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
